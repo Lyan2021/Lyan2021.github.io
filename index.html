@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>URL Parameter Example</title>
+</head>
+<body>
+    <h1>URL Parameter Example</h1>
+    <p>Key1: <span id="key1"></span></p>
+    <p>Key2: <span id="key2"></span></p>
+    <script>
+        // 获取URL参数
+        function getQueryParams() {
+            const params = {};
+            window.location.search.substring(1).split("&").forEach(function(pair) {
+                const [key, value] = pair.split("=");
+                params[key] = decodeURIComponent(value);
+            });
+            return params;
+        }
+
+        // 存储并显示URL参数
+        function displayParams() {
+            const params = getQueryParams();
+            document.getElementById('key1').textContent = params.key1 || 'Not set';
+            document.getElementById('key2').textContent = params.key2 || 'Not set';
+        }
+
+        // 在页面加载时调用
+        window.onload = displayParams;
+    </script>
+</body>
+</html>
